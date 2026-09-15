@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лутс Маркет</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="container">
+<header>
+<a class="home-link" href="index.html" title="На главную"><i class="fas fa-home"></i></a>
+<h1><i class="fas fa-chest"></i> Лутс Маркет</h1>
+<div class="hdr">
+<div class="sw">
+<i class="fas fa-search"></i>
+<input type="text" id="s" placeholder="Поиск по названию..." autocomplete="off">
+</div>
+<div class="sg">
+<label for="sl"><i class="fas fa-arrow-up-wide-short"></i></label>
+<select id="sl">
+<option value="id">ID</option>
+<option value="name">Название</option>
+<option value="rarity">Редкость</option>
+<option value="type">Тип</option>
+<option value="value">Цена</option>
+</select>
+<button class="sb" id="sd" title="Изменить направление"><i class="fas fa-arrow-up"></i></button>
+</div>
+</div>
+</header>
+<div class="st" id="stb"></div>
+<div class="tw">
+<table>
+<thead><tr>
+<th>#</th>
+<th class="s" data-f="name">Название <i class="fas fa-sort"></i></th>
+<th class="s" data-f="type">Тип <i class="fas fa-sort"></i></th>
+<th class="s" data-f="rarity">Редкость <i class="fas fa-sort"></i></th>
+<th>Характеристики</th>
+<th class="s" data-f="value">Цена <i class="fas fa-sort"></i></th>
+<th>Описание</th>
+</tr></thead>
+<tbody id="tb"></tbody>
+</table>
+</div>
+</div>
+
+<script>
+!function(){
+let a=[],f=[],sf='id',sd='asc',st='';
+const ro={common:0,uncommon:1,rare:2,epic:3,legendary:4};
+const rl={common:'Common',uncommon:'Uncommon',rare:'Rare',epic:'Epic',legendary:'Legendary'};
+const ti={weapon:'fa-shield-halved',armor:'fa-vest',accessory:'fa-ring',consumable:'fa-flask'};
+
+function ri(d){
+const rc=d.rarity;
+const se=Object.entries(d.stats||{});
+let ss=se.length?se.map(([k,v])=>{
+let vl=v;if(typeof v==='number'&&v<1)vl=Math.round(v*100)+'%';
+return `<span style="white-space:nowrap">${k.replace(/_/g,' ')}: <strong>${vl}</strong></span>`;
+}).join(', '):'<span style="color:var(--text2);font-size:.85rem">—</span>';
+return `<tr>
+<td style="color:var(--text2);font-size:.85rem">${d.id}</td>
+<td><div class="nc"><span class="ti"><i class="fas ${ti[d.type]||'fa-question'}"></i></span>${d.name}</div></td>
+<td>${d.type}</td>
+<td><span class="rb ${rc}"><i class="fas fa-star${rc==='common'?'-o':''}"></i> ${rl[rc]||rc}</span></td>
+<td style="font-size:.88rem">${ss}</td>
+<td class="vc"><i class="fas fa-coins"></i> ${d.value.toLocaleString()}</td>
+<td class="dc">${d.description||''}</td>
+</tr>`;
+}
+
+function u(){
+const t=st.toLowerCase().trim();
+f=a.filter(d=>d.name.toLowerCase().includes(t));
+const m=sd==='asc'?1:-1;
+f.sort((a,b)=>{
+let va,vb;
+switch(sf){
+case'name':va=a.name.toLowerCase();vb=b.name.toLowerCase();return va<vb?-m:va>vb?m:0;
+case'type':va=a.type;vb=b.type;return va<vb?-m:va>vb?m:0;
+case'rarity':return((ro[a.rarity]??0)-(ro[b.rarity]??0))*m;
+case'value':return(a.value-b.value)*m;
+default:return(a.id-b.id)*m;
+}
+});
+const tb=document.getElementById('tb');
+if(!f.length){
+tb.innerHTML=`<tr><td colspan="7"><div class="em"><i class="fas fa-search-minus"></i><p>Ничего не найдено по запросу «${st}»</p></div></td></tr>`;
+}else{
+tb.innerHTML=f.map(ri).join('');
+}
+document.getElementById('stb').innerHTML=
+`<span><i class="fas fa-box"></i> Всего: ${a.length}</span>`+
+`<span><i class="fas fa-eye"></i> Показано: ${f.length}</span>`+
+`<span><i class="fas fa-coins"></i> Стоимость: ${a.reduce((s,i)=>s+i.value,0).toLocaleString()}</span>`;
+document.querySelectorAll('th.s').forEach(th=>{
+const fi=th.dataset.f;th.classList.toggle('active',fi===sf);
+const ic=th.querySelector('i');
+if(ic)ic.className=fi===sf?'fas fa-sort-'+(sd==='asc'?'up':'down'):'fas fa-sort';
+});
+}
+
+document.getElementById('s').addEventListener('input',function(){st=this.value;u()});
+document.getElementById('sl').addEventListener('change',function(){sf=this.value;u()});
+document.getElementById('sd').addEventListener('click',function(){
+sd=sd==='asc'?'desc':'asc';
+this.querySelector('i').className='fas fa-arrow-'+(sd==='asc'?'up':'down');
+u();
+});
+document.querySelectorAll('th.s').forEach(th=>{
+th.addEventListener('click',function(){
+const fi=this.dataset.f;
+if(fi===sf){sd=sd==='asc'?'desc':'asc';}else{sf=fi;sd='asc';}
+document.getElementById('sl').value=sf;
+const btn=document.getElementById('sd');
+btn.querySelector('i').className='fas fa-arrow-'+(sd==='asc'?'up':'down');
+u();
+});
+});
+
+fetch('loot_items.json').then(r=>r.json()).then(j=>{a=j.items;u()}).catch(()=>{
+document.getElementById('tb').innerHTML=`<tr><td colspan="7"><div class="em"><i class="fas fa-exclamation-triangle"></i><p>Не удалось загрузить loot_items.json</p></div></td></tr>`;
+});
+}();
+</script>
+</body>
+</html>

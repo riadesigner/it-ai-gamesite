@@ -1,0 +1,206 @@
+{
+  "description": "20 универсальных предметов лута для RPG/фэнтези игры",
+  "generated": "2026-09-15",
+  "items": [
+    {
+      "id": 1,
+      "name": "Ржавый кинжал",
+      "type": "weapon",
+      "rarity": "common",
+      "slot": "main_hand",
+      "stats": { "damage": 3, "speed": 1.5 },
+      "value": 5,
+      "description": "Старый зазубренный кинжал. Лучше, чем голыми руками."
+    },
+    {
+      "id": 2,
+      "name": "Кожаная куртка",
+      "type": "armor",
+      "rarity": "common",
+      "slot": "chest",
+      "stats": { "armor": 5 },
+      "value": 12,
+      "description": "Потёртая, но ещё крепкая куртка из грубой кожи."
+    },
+    {
+      "id": 3,
+      "name": "Медное кольцо",
+      "type": "accessory",
+      "rarity": "common",
+      "slot": "ring",
+      "stats": { "charisma": 1 },
+      "value": 8,
+      "description": "Простое кольцо из меди. Почти ничего не стоит."
+    },
+    {
+      "id": 4,
+      "name": "Зелье малого лечения",
+      "type": "consumable",
+      "rarity": "common",
+      "slot": "potion",
+      "stats": { "heal": 25 },
+      "value": 15,
+      "description": "Красноватая жидкость со сладким привкусом. Восстанавливает немного здоровья."
+    },
+    {
+      "id": 5,
+      "name": "Стальной меч",
+      "type": "weapon",
+      "rarity": "uncommon",
+      "slot": "main_hand",
+      "stats": { "damage": 10, "speed": 1.2 },
+      "value": 45,
+      "description": "Надёжный прямой меч из добротной стали. Сбалансирован и удобен в бою."
+    },
+    {
+      "id": 6,
+      "name": "Дубовый щит",
+      "type": "armor",
+      "rarity": "uncommon",
+      "slot": "off_hand",
+      "stats": { "armor": 8, "block_chance": 0.12 },
+      "value": 30,
+      "description": "Крепкий деревянный щит, окованный железными полосами."
+    },
+    {
+      "id": 7,
+      "name": "Сапоги скорохода",
+      "type": "armor",
+      "rarity": "uncommon",
+      "slot": "feet",
+      "stats": { "armor": 2, "speed": 0.2 },
+      "value": 35,
+      "description": "Лёгкие сапоги, в которых ноги будто сами несут тебя вперёд."
+    },
+    {
+      "id": 8,
+      "name": "Амулет ясности",
+      "type": "accessory",
+      "rarity": "uncommon",
+      "slot": "necklace",
+      "stats": { "wisdom": 3, "mana_regen": 1 },
+      "value": 55,
+      "description": "Небольшой амулет с синим камнем. Помогает сосредоточиться и быстрее восстанавливать магию."
+    },
+    {
+      "id": 9,
+      "name": "Свиток огненной стрелы",
+      "type": "consumable",
+      "rarity": "uncommon",
+      "slot": "scroll",
+      "stats": { "damage": 35, "range": 20 },
+      "value": 40,
+      "description": "Пергамент с магическими рунами. При активации выпускает сгусток пламени во врага."
+    },
+    {
+      "id": 10,
+      "name": "Длинный лук",
+      "type": "weapon",
+      "rarity": "uncommon",
+      "slot": "two_hand",
+      "stats": { "damage": 8, "range": 25, "speed": 0.9 },
+      "value": 40,
+      "description": "Гибкий лук из ясеня с тугой тетивой. Хорош для охоты и боя на расстоянии."
+    },
+    {
+      "id": 11,
+      "name": "Плащ теней",
+      "type": "armor",
+      "rarity": "rare",
+      "slot": "cloak",
+      "stats": { "armor": 4, "stealth": 0.25 },
+      "value": 120,
+      "description": "Чёрный плащ, который словно впитывает свет. Владельца труднее заметить в тени."
+    },
+    {
+      "id": 12,
+      "name": "Кольцо силы",
+      "type": "accessory",
+      "rarity": "rare",
+      "slot": "ring",
+      "stats": { "strength": 5, "damage": 3 },
+      "value": 150,
+      "description": "Тяжёлое железное кольцо с пульсирующими рунами. Дарует невиданную мощь."
+    },
+    {
+      "id": 13,
+      "name": "Посох мага",
+      "type": "weapon",
+      "rarity": "rare",
+      "slot": "two_hand",
+      "stats": { "damage": 6, "mana_regen": 5, "max_mana": 50 },
+      "value": 200,
+      "description": "Длинный посох из голубоватого дерева с кристаллом. Кристалл гудит, переполненный магией."
+    },
+    {
+      "id": 14,
+      "name": "Зелье невидимости",
+      "type": "consumable",
+      "rarity": "rare",
+      "slot": "potion",
+      "stats": { "effect": "invisibility", "duration_seconds": 12 },
+      "value": 85,
+      "description": "Прозрачная мерцающая жидкость. Выпивший исчезает из виду на короткое время."
+    },
+    {
+      "id": 15,
+      "name": "Кираса паладина",
+      "type": "armor",
+      "rarity": "rare",
+      "slot": "chest",
+      "stats": { "armor": 20, "strength": 3, "holy_resist": 0.3 },
+      "value": 250,
+      "description": "Серебристая кираса с гравировкой святых символов. Излучает тепло и уверенность."
+    },
+    {
+      "id": 16,
+      "name": "Перчатки вора",
+      "type": "armor",
+      "rarity": "rare",
+      "slot": "hands",
+      "stats": { "armor": 1, "pickpocket": 0.2, "lockpicking": 0.15 },
+      "value": 95,
+      "description": "Тонкие кожаные перчатки без пальцев. Пальцы становятся необычайно чуткими."
+    },
+    {
+      "id": 17,
+      "name": "Мифриловый меч «Рассвет»",
+      "type": "weapon",
+      "rarity": "epic",
+      "slot": "main_hand",
+      "stats": { "damage": 22, "speed": 1.6, "holy_damage": 10, "crit_chance": 0.08 },
+      "value": 500,
+      "description": "Меч из светлого мифрила, излучающий мягкое сияние. Говорят, он выкован из осколка звезды."
+    },
+    {
+      "id": 18,
+      "name": "Корона древнего короля",
+      "type": "armor",
+      "rarity": "epic",
+      "slot": "head",
+      "stats": { "armor": 5, "intelligence": 7, "charisma": 8, "max_mana": 40 },
+      "value": 600,
+      "description": "Золотая корона с тремя рубинами. Носитель чувствует мудрость древних правителей."
+    },
+    {
+      "id": 19,
+      "name": "Сердце дракона",
+      "type": "accessory",
+      "rarity": "legendary",
+      "slot": "relic",
+      "stats": { "all_stats": 5, "fire_resist": 0.5, "health_regen": 3, "passive_skill": "dragon_rage" },
+      "value": 1500,
+      "description": "Пульсирующий огненный кристалл в форме сердца. Дарует частицу драконьей мощи."
+    },
+    {
+      "id": 20,
+      "name": "Сфера забвения",
+      "type": "consumable",
+      "rarity": "legendary",
+      "slot": "quest_item",
+      "stats": { "effect": "oblivion_blast", "damage": 500, "radius": 30 },
+      "value": 9999,
+      "description": "Чёрная сфера с кружащейся внутри тьмой. Использование уничтожит всё в огромном радиусе."
+    }
+  ]
+}

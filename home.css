@@ -1,0 +1,252 @@
+/* ===== Reset & Base ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0d1117;
+  --bg2: #161b22;
+  --bg3: #1c2333;
+  --hover: #242d3d;
+  --border: #2d3748;
+  --text: #e6edf3;
+  --text2: #8b949e;
+  --accent: #22c55e;
+  --adim: #166534;
+  --glow: rgba(34, 197, 94, .15);
+}
+
+/* Светлая тема (переключатель «Свет / Тьма») */
+body.theme-light {
+  --bg: #f5f7fa;
+  --bg2: #ffffff;
+  --bg3: #eef1f6;
+  --hover: #e6ebf2;
+  --border: #d5dbe3;
+  --text: #1b2430;
+  --text2: #5b6675;
+  --glow: rgba(34, 197, 94, .18);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background .3s, color .3s;
+}
+
+/* ===== Шапка-пульт ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 24px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, .2);
+}
+
+/* Логотип */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.logo i {
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+
+.logo .accent { color: var(--accent); }
+
+/* Поиск */
+.search-box {
+  position: relative;
+  flex: 1 1 280px;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+}
+
+.search-box i {
+  position: absolute;
+  left: 14px;
+  color: var(--text2);
+  font-size: .9rem;
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 11px 14px 11px 38px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: .95rem;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.search-box input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--glow);
+}
+
+.search-box input::placeholder { color: var(--text2); }
+
+/* Переключатель настроения */
+.mood {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.mood-group {
+  display: flex;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 3px;
+  gap: 2px;
+}
+
+.mood-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  color: var(--text2);
+  font-size: .8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+  white-space: nowrap;
+}
+
+.mood-btn i { font-size: .85rem; }
+
+.mood-btn:hover { color: var(--text); }
+
+.mood-btn.active {
+  background: var(--accent);
+  color: #0d1117;
+}
+
+/* Кнопки меню */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav a {
+  padding: 9px 12px;
+  border-radius: 8px;
+  color: var(--text2);
+  font-size: .9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background .2s, color .2s;
+  white-space: nowrap;
+}
+
+.nav a:hover,
+.nav a.active {
+  background: var(--hover);
+  color: var(--accent);
+}
+
+/* Профиль */
+.profile {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: .9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color .2s, color .2s;
+  white-space: nowrap;
+}
+
+.profile i { color: var(--accent); }
+
+.profile:hover { border-color: var(--accent); }
+
+/* ===== Заглушка остальных секций ===== */
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 28px 24px;
+}
+
+.placeholder {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text2);
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+}
+
+.placeholder i {
+  font-size: 2.5rem;
+  color: var(--adim);
+  margin-bottom: 16px;
+}
+
+.placeholder h2 {
+  font-size: 1.3rem;
+  color: var(--text);
+  margin-bottom: 10px;
+}
+
+.placeholder p { font-size: .95rem; }
+
+.placeholder .tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.placeholder .tags span {
+  padding: 5px 12px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: .82rem;
+  color: var(--text2);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1000px) {
+  .site-header { gap: 12px; padding: 12px 16px; }
+  .nav a { padding: 8px 10px; font-size: .85rem; }
+}
+
+@media (max-width: 760px) {
+  .site-header { flex-direction: column; align-items: stretch; }
+  .search-box { flex: none; }
+  .mood { flex-direction: row; flex-wrap: wrap; }
+  .nav { justify-content: center; }
+  .profile { justify-content: center; }
+}
