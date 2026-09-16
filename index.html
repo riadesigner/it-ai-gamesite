@@ -27,14 +27,6 @@
 
     <!-- Переключатель настроения -->
     <div class="mood">
-      <div class="mood-group" id="moodLightDark">
-        <button class="mood-btn active" data-mode="dark" title="Тёмная тема">
-          <i class="fas fa-moon"></i> Тьма
-        </button>
-        <button class="mood-btn" data-mode="light" title="Светлая тема">
-          <i class="fas fa-sun"></i> Свет
-        </button>
-      </div>
       <div class="mood-group" id="moodCozyHardcore">
         <button class="mood-btn active" data-vibe="cozy" title="Спокойное настроение">
           <i class="fas fa-leaf"></i> Спокойно
@@ -63,7 +55,7 @@
 
   <!-- ===== Hero «Сцена дня» ===== -->
   <section class="hero" id="scene-of-the-day">
-    <!-- Фон: пока просто цвет/градиент. Позже сюда подставим картинку. -->
+    <!-- Фон: картинка «gnom.jpeg» задана в css/home.css (.hero-bg). -->
     <div class="hero-bg" aria-hidden="true"></div>
 
     <div class="hero-content">
@@ -127,16 +119,6 @@
   </main>
 
   <script>
-    // ==== Переключатель Свет / Тьма ====
-    const themeBtns = document.querySelectorAll('#moodLightDark .mood-btn');
-    themeBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        themeBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.body.classList.toggle('theme-light', btn.dataset.mode === 'light');
-      });
-    });
-
     // ==== Переключатель Спокойно / Хардкор (пока только активное состояние) ====
     const vibeBtns = document.querySelectorAll('#moodCozyHardcore .mood-btn');
     vibeBtns.forEach(btn => {
