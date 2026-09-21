@@ -179,16 +179,13 @@ body {
 
 .profile:hover { border-color: var(--accent); }
 
-/* ===== Hero «Сцена дня» ===== */
+/* ===== Hero «Сцена дня» — слайдер ===== */
 .hero {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   min-height: 460px;
   margin: 28px auto 0;
   max-width: 1400px;
-  padding: 48px 40px;
+  padding: 0;
   border-radius: 20px;
   overflow: hidden;
   background: var(--bg2);
@@ -196,19 +193,66 @@ body {
   box-shadow: 0 10px 40px rgba(0, 0, 0, .25);
 }
 
-/* Фон: картинка «gnom.jpeg» (1280×768). Затемнение поверх — в .hero-bg::after. */
+/* Лента слайдов */
+.hero-slider {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  min-height: 460px;
+  transition: transform .6s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Отдельный слайд */
+.hero-slide {
+  position: relative;
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 460px;
+  padding: 48px 40px;
+  overflow: hidden;
+}
+
+/* Фон слайда: по умолчанию тёмный градиент. */
 .hero-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
+  background: radial-gradient(circle at 30% 30%, #1c2333, #0d1117 70%);
+}
+
+/* Сцена 1 — «Сад воспоминаний»: картинка «gnom.jpeg» (1280×768). */
+.hero-slide--garden .hero-bg {
   background: url('../images/gnom.jpeg') center / cover no-repeat;
 }
 
+/* Сцена 2 — «Неоновая охота»: неоновый градиент. */
+.hero-slide--neon .hero-bg {
+  background:
+    radial-gradient(circle at 75% 40%, rgba(236, 72, 153, .45), transparent 55%),
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, .4), transparent 55%),
+    linear-gradient(120deg, #0d1117 0%, #1a1030 60%, #0d1117 100%);
+}
+
+/* Сцена 3 — «Бездна»: тёмный глубокий градиент. */
+.hero-slide--abyss .hero-bg {
+  background:
+    radial-gradient(circle at 50% 110%, rgba(88, 28, 135, .55), transparent 60%),
+    linear-gradient(180deg, #05070c 0%, #0d1117 55%, #140a1f 100%);
+}
+
+/* Затемнение поверх фона (усиливается в сценах 2 и 3). */
 .hero-bg::after {
   content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg, rgba(13, 17, 23, .92) 0%, rgba(13, 17, 23, .65) 45%, rgba(13, 17, 23, .15) 100%);
+}
+
+.hero-slide--neon .hero-bg::after,
+.hero-slide--abyss .hero-bg::after {
+  background: linear-gradient(90deg, rgba(13, 17, 23, .95) 0%, rgba(13, 17, 23, .7) 55%, rgba(13, 17, 23, .25) 100%);
 }
 
 .hero-content {
@@ -367,11 +411,80 @@ body {
   font-weight: 800;
 }
 
+/* ===== Навигация слайдера (стрелки) ===== */
+.hero-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(13, 17, 23, .6);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text);
+  font-size: 1.05rem;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background .2s, border-color .2s, color .2s, transform .15s;
+}
+
+.hero-nav:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #0d1117;
+}
+
+.hero-nav:active { transform: translateY(-50%) scale(.92); }
+
+.hero-prev { left: 16px; }
+.hero-next { right: 16px; }
+
+/* ===== Индикаторы-точки ===== */
+.hero-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  gap: 10px;
+}
+
+.hero-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .25);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background .2s, transform .2s, width .2s;
+}
+
+.hero-dot:hover { background: rgba(255, 255, 255, .5); }
+
+.hero-dot.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  width: 28px;
+  border-radius: 8px;
+  transform: scale(1.1);
+}
+
 /* ===== Responsive Hero ===== */
 @media (max-width: 760px) {
-  .hero { min-height: 0; padding: 32px 20px; }
+  .hero { min-height: 0; padding: 0; }
+  .hero-slider { min-height: 0; }
+  .hero-slide { min-height: 0; padding: 32px 20px 56px; }
   .hero-timer { position: static; align-items: flex-start; margin-top: 18px; }
   .hero-cta .btn { flex: 1 1 auto; justify-content: center; }
+  .hero-nav { width: 40px; height: 40px; }
+  .hero-prev { left: 10px; }
+  .hero-next { right: 10px; }
+  .hero-dots { bottom: 12px; }
 }
 
 /* ===== Заглушка остальных секций ===== */
